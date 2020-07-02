@@ -10,4 +10,4 @@ pip install -r requirements.txt
 - Escaneie o QR Code na página aberta pelo Chrome e pressione Enter no console
 - Digite o nome do Grupo ou Conversa
 ###
-O script fica aguardando até que novas mensagens sejam enviadas utilizando scrapping no HTML. Não feche a janela aberta pelo Chrome, caso contrário o script irá falhar.
+O script fica aguardando até que novas mensagens sejam enviadas utilizando scrapping no HTML. Não feche a janela aberta pelo Chrome, caso contrário o script irá parar.
