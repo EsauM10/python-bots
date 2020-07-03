@@ -6,10 +6,11 @@ from selenium.common.exceptions import StaleElementReferenceException
 
 def getNumMessages(name):
     return page.find_element_by_xpath(
-                '//span[@title="{}"]/ancestor::div[4]/div[2]/div[2]/span[1]/div[2]/span'.format(name))
+            '//span[@title="{}"]/ancestor::div[4]/div[2]/div[2]/span[1]/div[2]/span'.format(name))
 
 def getCurrentMessage(name):
-    return page.find_element_by_xpath('//span[@title="{}"]/ancestor::div[4]/div[2]/div[1]/span'.format(name)).text
+    return page.find_element_by_xpath(
+            '//span[@title="{}"]/ancestor::div[4]/div[2]/div[1]/span'.format(name)).text
 
 
 page = webdriver.Chrome(ChromeDriverManager().install())
@@ -28,7 +29,7 @@ print('Carregando conversas...')
 
 was_found = True
 last_message = ''
-last_number = 0
+last_number  = ''
 
 while True:
     name = input('\nDigite o nome do Grupo ou exit para sair: ')
@@ -43,7 +44,7 @@ while True:
         while True:
             try:
                 #Obtém o número de mensagens não lidas
-                current_number = int(getNumMessages(name).text)
+                current_number = getNumMessages(name).text
 
                 # Verifica se há novas mensagens
                 if(current_number != last_number):
@@ -57,7 +58,7 @@ while True:
 
                 was_found = True
             except NoSuchElementException:
-                if was_found == True:
+                if was_found:
                     was_found = False
                     print('\nAguardando novas mensagens..\n')
             except StaleElementReferenceException:
